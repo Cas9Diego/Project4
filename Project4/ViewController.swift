@@ -30,7 +30,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     @objc func openTapped () {
         let ac = UIAlertController(title: "Open Page", message: nil, preferredStyle: .actionSheet)
-        ac.addAction(UIAlertAction(title: "google.com", style: .default, handler: openPage))
+        ac.addAction(UIAlertAction(title: "youtube.com", style: .default, handler: openPage))
         ac.addAction(UIAlertAction(title: "apple.com", style: .default, handler: openPage))
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         ac.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
@@ -40,6 +40,10 @@ class ViewController: UIViewController, WKNavigationDelegate {
     func openPage (action: UIAlertAction) {
         let url = URL(string: "https://"+action.title!)!
         webView.load(URLRequest(url: url))
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        title = webView.title
     }
 
 
